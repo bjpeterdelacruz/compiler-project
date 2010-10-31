@@ -1,0 +1,276 @@
+
+F:\PROJEC~1>cd ..
+
+F:\>cd "Project 4"
+
+F:\Project 4>build.bat
+
+F:\Project 4>flex proj4.l
+
+F:\Project 4>hyacc -dlt proj4.y
+
+F:\Project 4>gcc -w *.c -o compiler -DINFO
+
+F:\PROJEC~1>compiler source
+0 syntax errors encountered. Object module created [source.obj].
+**************************************************
+Notes:
+   -- Numbers are in bytes.
+   -- Code sizes and fixup sizes stacks are used to create pairs of LEDATA and FIXUPP records.
+   -- Sizes of code sizes and fixup sizes stacks must be the same.
+
+Current size of code stack:        [ 9677]
+Current size of fixup stack:       [  836]
+Current size of code sizes stack:  [   48]
+Current size of fixup sizes stack: [   48]
+
+Maximum size of code stack:        [25000] <-- CODE_STACK_SIZE
+Maximum size of fixup stack:       [10000] <-- FIXUP_STACK_SIZE
+Maximum size of code sizes stack:  [  500] <-- SIZES_STACK_SIZE
+Maximum size of fixup sizes stack: [  500] <-- SIZES_STACK_SIZE
+
+Modify the four constants above to resize the respective stacks. The constants can be found in constants.h.
+**************************************************
+
+F:\PROJEC~1>link source,,,util.lib
+
+Microsoft (R) Segmented Executable Linker  Version 5.60.339 Dec  5 1994
+Copyright (C) Microsoft Corp 1984-1993.  All rights reserved.
+
+Definitions File [nul.def]:
+
+F:\PROJEC~1>source
+
+Hello World!
+
+Enter a value for VAR1: 2
+
+Enter a value for VAR2: 5
+
+--- Begin WHILE loop ---
+
+VAR1 is now equal to VAR2!
+
+Enter a value for VAR3: 7
+
+Decrementing VAR3...
+
+The answer is 6
+
+Decrementing VAR3...
+
+The answer is 5
+
+Decrementing VAR3...
+
+The answer is 4
+
+---  End WHILE loop  ---
+
+VAR1 does not equal VAR2!
+
+The answer is 6
+
+The answer is 5
+
+VAR1 is greater than VAR2!
+
+--- Begin arithmetic calculations ---
+
+Let VAR5 = 25.
+
+VAR5 / -5
+
+The answer is -5
+
+-VAR5 / -5
+
+The answer is 5
+
+VAR5 * -5
+
+The answer is -125
+
+-VAR5 * -5
+
+The answer is 125
+
+VAR5 / -5 --> VAR5
+
+The answer is -5
+
+-VAR5 * -5 --> VAR5
+
+The answer is 125
+
+*************************************
+
+Let VAR3 = 20 and VAR4 = 40.
+
+VAR3 + -VAR4
+
+The answer is -20
+
+VAR3 - -VAR4
+
+The answer is 60
+
+-VAR3 + -VAR4
+
+The answer is -60
+
+-VAR3 - -VAR4
+
+The answer is 20
+
+VAR3 - -VAR4 --> VAR3
+
+The answer is 60
+
+-VAR3 + -VAR4 --> VAR3
+
+The answer is -60
+
+*************************************
+
+Let VAR1 = 5, VAR2 = 10, VAR3 = 15, and VAR4 = 20.
+
+VAR1 + VAR2 - VAR3 - VAR4 --> VAR5
+
+The answer is -20
+
+VAR2 * 5 * 5 + VAR3 + VAR3 - -VAR4 --> VAR5
+
+The answer is 300
+
+VAR4 / 5 * -VAR1 * -5 / -VAR4 --> VAR5
+
+The answer is -5
+
+Negating VAR5...
+
+The answer is 5
+
+-VAR5 + 5 --> VAR5
+
+The answer is -15
+
+-VAR5 - 5 * -1 - 5 + 10 --> VAR5
+
+The answer is 30
+
+*************************************
+
+Let VAR1 = 1.
+
+VAR1 + 2 - 3 + 4 - 5 * -6 / 3 * 10 / -2
+
+The answer is -10
+
+VAR1 - 2 + 3 - 4 + 5 * 3 / -3 * -4 / 2 --> VAR2
+
+The answer is 6
+
+---  End arithmetic calculations  ---
+
+--- Begin DO loop ---
+
+Let VAR1 = 2 and VAR4 = 2.
+
+The answer is 2
+
+The answer is 2
+
+Incrementing VAR4...
+
+The answer is 4
+
+Incrementing VAR4...
+
+The answer is 6
+
+Incrementing VAR4...
+
+Incrementing VAR1...
+
+The answer is 4
+
+The answer is 2
+
+Incrementing VAR4...
+
+The answer is 4
+
+Incrementing VAR4...
+
+The answer is 6
+
+Incrementing VAR4...
+
+Incrementing VAR1...
+
+The answer is 6
+
+The answer is 2
+
+Incrementing VAR4...
+
+The answer is 4
+
+Incrementing VAR4...
+
+The answer is 6
+
+Incrementing VAR4...
+
+Incrementing VAR1...
+
+The answer is 8
+
+The answer is 2
+
+Incrementing VAR4...
+
+The answer is 4
+
+Incrementing VAR4...
+
+The answer is 6
+
+Incrementing VAR4...
+
+Incrementing VAR1...
+
+The answer is 10
+
+The answer is 2
+
+Incrementing VAR4...
+
+The answer is 4
+
+Incrementing VAR4...
+
+The answer is 6
+
+Incrementing VAR4...
+
+Incrementing VAR1...
+
+---  End DO loop  ---
+
+VAR1 is less than VAR2!
+
+Incrementing VAR1...
+
+VAR1 is less than VAR2!
+
+Incrementing VAR1...
+
+VAR1 is now greater than VAR3!
+
+VAR1 is equal to VAR2!
+
+Goodbye!
+
+F:\PROJEC~1>

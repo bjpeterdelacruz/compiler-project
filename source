@@ -1,0 +1,184 @@
+MAIN;
+
+INT VAR1, VAR2, VAR3, VAR4, VAR5; /* Declare variables */
+
+OUTPUT "Hello World!";
+
+INPUT VAR1; INPUT VAR2; /* Ask user to
+input values for VAR1 and VAR2 */ VAR1 = VAR2;
+
+OUTPUT "--- Begin WHILE loop ---";
+
+WHILE VAR1 == VAR2
+   OUTPUT "VAR1 is now equal to VAR2!";
+   INPUT VAR3;
+   VAR4 = 1;
+   WHILE VAR3 >= VAR1
+      OUTPUT "Decrementing VAR3...";
+      VAR3 = VAR3 - VAR4;
+      OUTPUT VAR3;
+      /* OUTPUT VAR2
+         OUTPUT VAR1 */
+   WEND
+   VAR1 = VAR2 + VAR4;
+WEND
+
+OUTPUT "---  End WHILE loop  ---";
+
+IF VAR1 != VAR2
+   OUTPUT "VAR1 does not equal VAR2!";
+   OUTPUT VAR1;
+   OUTPUT VAR2;
+   IF VAR1 >= VAR2
+      OUTPUT "VAR1 is greater than VAR2!";
+   ENDIF
+ENDIF
+
+// OUTPUT VAR1 + VAR2 + VAR3;
+
+OUTPUT "--- Begin arithmetic calculations ---";
+
+OUTPUT "Let VAR5 = 25.";
+VAR5 = 25;
+
+OUTPUT "VAR5 / -5";
+OUTPUT VAR5  / -5;
+
+OUTPUT "-VAR5 / -5";
+OUTPUT -VAR5 / -5;
+
+OUTPUT "VAR5 * -5";
+OUTPUT VAR5  * -5;
+
+OUTPUT "-VAR5 * -5";
+OUTPUT -VAR5 * -5;
+
+OUTPUT "VAR5 / -5 --> VAR5";
+VAR5 = VAR5  / -5;
+OUTPUT VAR5;
+
+OUTPUT "-VAR5 * -5 --> VAR5";
+VAR5 = 25;
+VAR5 = -VAR5 * -5;
+OUTPUT VAR5;
+
+OUTPUT "*************************************";
+
+OUTPUT "Let VAR3 = 20 and VAR4 = 40.";
+VAR3 = 20;
+VAR4 = 40;
+
+OUTPUT "VAR3 + -VAR4";
+OUTPUT VAR3  + -VAR4;
+
+OUTPUT "VAR3 - -VAR4";
+OUTPUT VAR3  - -VAR4;
+
+OUTPUT "-VAR3 + -VAR4";
+OUTPUT -VAR3 + -VAR4;
+
+OUTPUT "-VAR3 - -VAR4";
+OUTPUT -VAR3 - -VAR4;
+
+OUTPUT "VAR3 - -VAR4 --> VAR3";
+VAR3 = VAR3  - -VAR4;
+OUTPUT VAR3;
+
+OUTPUT "-VAR3 + -VAR4 --> VAR3";
+VAR3 = 20;
+VAR3 = -VAR3 + -VAR4;
+OUTPUT VAR3;
+
+OUTPUT "*************************************";
+
+OUTPUT "Let VAR1 = 5, VAR2 = 10, VAR3 = 15, and VAR4 = 20.";
+VAR1 = 5;
+VAR2 = 10;
+VAR3 = 15;
+VAR4 = 20;
+
+OUTPUT "VAR1 + VAR2 - VAR3 - VAR4 --> VAR5";
+VAR5 = VAR1 + VAR2 - VAR3 - VAR4;
+OUTPUT VAR5;
+
+OUTPUT "VAR2 * 5 * 5 + VAR3 + VAR3 - -VAR4 --> VAR5";
+VAR5 = VAR2 * 5 * 5 + VAR3 + VAR3 - -VAR4;
+OUTPUT VAR5;
+
+OUTPUT "VAR4 / 5 * -VAR1 * -5 / -VAR4 --> VAR5";
+VAR4 = 20;
+VAR5 = VAR4 / 5 * -VAR1 * -5 / -VAR4;
+OUTPUT VAR5;
+
+OUTPUT "Negating VAR5...";
+OUTPUT (-VAR5);
+
+OUTPUT "-VAR5 + 5 --> VAR5";
+VAR5 = 20;
+VAR5 = -VAR5 + 5;
+OUTPUT VAR5;
+
+OUTPUT "-VAR5 - 5 * -1 - 5 + 10 --> VAR5";
+VAR5 = 20;
+VAR5 = -VAR5 - 5 * -1 - 5 + 10;
+OUTPUT VAR5;
+
+OUTPUT "*************************************";
+
+OUTPUT "Let VAR1 = 1.";
+VAR1 = 1;
+
+OUTPUT "VAR1 + 2 - 3 + 4 - 5 * -6 / 3 * 10 / -2";
+OUTPUT VAR1 + 2 - 3 + 4 - 5 * -6 / 3 * 10 / -2;
+
+OUTPUT "VAR1 - 2 + 3 - 4 + 5 * 3 / -3 * -4 / 2 --> VAR2";
+VAR2 = VAR1 - 2 + 3 - 4 + 5 * 3 / -3 * -4 / 2;
+OUTPUT VAR2;
+
+OUTPUT "---  End arithmetic calculations  ---";
+
+// Set up values for DO loop
+
+VAR2 = 2;
+VAR3 = 10;
+VAR5 = 6;
+
+OUTPUT "--- Begin DO loop ---";
+
+OUTPUT "Let VAR1 = 2 and VAR4 = 2.";
+
+DO VAR1 = VAR2 STEP VAR2 TO VAR3
+  OUTPUT VAR1;
+  DO VAR4 = VAR2 STEP VAR2 TO VAR5
+     OUTPUT VAR4;
+     OUTPUT "Incrementing VAR4...";
+  END DO
+  OUTPUT "Incrementing VAR1...";
+END DO
+
+OUTPUT "---  End DO loop  ---";
+
+VAR1 = 1;
+VAR2 = 3;
+VAR3 = 1;
+WHILE VAR1 < VAR2
+  OUTPUT "VAR1 is less than VAR2!";
+  OUTPUT "Incrementing VAR1...";
+  VAR1 = VAR1 + VAR3;
+WEND
+
+IF VAR1 > VAR3
+  OUTPUT "VAR1 is now greater than VAR3!";
+  IF VAR1 == VAR2
+    OUTPUT "VAR1 is equal to VAR2!";
+    IF VAR1 < VAR3
+      OUTPUT "?";
+      VAR1 = VAR3;
+      OUTPUT "VAR1 is now equal to VAR3!";
+    ENDIF  // 3
+  ENDIF    /* 2 */
+ENDIF      // 1 //
+
+OUTPUT "Goodbye!";
+
+END MAIN;
