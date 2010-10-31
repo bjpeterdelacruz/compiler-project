@@ -1,8 +1,10 @@
 # C Compiler for YAPL
-# A compiler for the (fictitious) YAPL programming language
+
+## What is YAPL?
+YAPL stands for Yet Another Programming Language. It is a programming language I created. :-)
 
 ## Quick Start Guide
-Add .exe extensions to cmp and src. cmp is the compiler, and src is the program generated from the object file that is in the zip file.
+Add .exe extensions to cmp and src. cmp is the compiler, and src is the program generated from the object file that is in the repository (source.obj).
 
 ## Links
 You can view my blog [here](http://thetravelingcs.blogspot.com).
