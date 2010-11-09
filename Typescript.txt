@@ -1,22 +1,24 @@
 
-F:\PROJEC~1>cd ..
+C:\DOCUME~1\ICSUSE~1\Desktop\PROJEC~1>build
 
-F:\>cd "Project 4"
+C:\DOCUME~1\ICSUSE~1\Desktop\PROJEC~1>flex proj4.l
 
-F:\Project 4>build.bat
+C:\DOCUME~1\ICSUSE~1\Desktop\PROJEC~1>hyacc -dlt proj4.y
 
-F:\Project 4>flex proj4.l
+C:\DOCUME~1\ICSUSE~1\Desktop\PROJEC~1>gcc -w *.c -o compiler -DINFO
 
-F:\Project 4>hyacc -dlt proj4.y
+C:\DOCUME~1\ICSUSE~1\Desktop\PROJEC~1>compiler source.yapl
+0 syntax errors encountered.
 
-F:\Project 4>gcc -w *.c -o compiler -DINFO
+Object module created [source.obj].
+Error report created [source.rpt].
+Cross-reference list created [source.lst].
 
-F:\PROJEC~1>compiler source
-0 syntax errors encountered. Object module created [source.obj].
 **************************************************
 Notes:
    -- Numbers are in bytes.
-   -- Code sizes and fixup sizes stacks are used to create pairs of LEDATA and FIXUPP records.
+   -- Code sizes and fixup sizes stacks are used to create pairs of LEDATA and F
+IXUPP records.
    -- Sizes of code sizes and fixup sizes stacks must be the same.
 
 Current size of code stack:        [ 9677]
@@ -29,17 +31,18 @@ Maximum size of fixup stack:       [10000] <-- FIXUP_STACK_SIZE
 Maximum size of code sizes stack:  [  500] <-- SIZES_STACK_SIZE
 Maximum size of fixup sizes stack: [  500] <-- SIZES_STACK_SIZE
 
-Modify the four constants above to resize the respective stacks. The constants can be found in constants.h.
+Modify the four constants above to resize the respective stacks. The constants c
+an be found in constants.h.
 **************************************************
 
-F:\PROJEC~1>link source,,,util.lib
+C:\DOCUME~1\ICSUSE~1\Desktop\PROJEC~1>link source,,,util.lib
 
 Microsoft (R) Segmented Executable Linker  Version 5.60.339 Dec  5 1994
 Copyright (C) Microsoft Corp 1984-1993.  All rights reserved.
 
 Definitions File [nul.def]:
 
-F:\PROJEC~1>source
+C:\DOCUME~1\ICSUSE~1\Desktop\PROJEC~1>source
 
 Hello World!
 
@@ -273,4 +276,4 @@ VAR1 is equal to VAR2!
 
 Goodbye!
 
-F:\PROJEC~1>
+C:\DOCUME~1\ICSUSE~1\Desktop\PROJEC~1>

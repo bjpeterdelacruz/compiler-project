@@ -4,8 +4,9 @@ Main features:
    -- If the programmer hardcodes a zero in the denominator of a division operation,
       the compiler displays an error message, and the object module is not created.
 -- DO statement
--- Error report (.lst file)
+-- Error report (.rpt file)
    -- If a syntax error is found, the object module is not created.
+-- Cross-reference list (.lst file)
 -- Pairs of LEDATA and FIXUPP records
    -- Compile with -DINFO to view code and fixup stack information
 
