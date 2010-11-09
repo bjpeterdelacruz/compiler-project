@@ -23,6 +23,8 @@
    int  find(char* name);
    int  hash(char* name);
    void make_entry(char* name, int j);
+   void insert_into_line_number_table(int line_number, char* identifier);
+   void create_cross_reference_list(FILE* output_file, char* source_filename);
 
    /******** Helper functions ********/
    int  cmpstr(char* text1, char* text2);

@@ -1,7 +1,7 @@
 /**************************************************
 **                                               **
 ** BJ Peter DeLaCruz                             **
-** October 27, 2010                              **
+** November 8, 2010                              **
 ** ICS 611                                       **
 **                                               **
 ** Project #4                                    **
@@ -28,6 +28,8 @@
     #include "proj4.h"
     #include "y.tab.h"
 
+    typedef int (*compfn)(const void*, const void*);
+
     typedef struct {
         int kind_of_location;
         int location;
@@ -45,12 +47,22 @@
 
     char id_stack[SIZE];
 
+    typedef struct lne {
+        char identifier[IDENTIFIER_LENGTH];
+        int line_number;
+    } line_number_entry;
+
+    line_number_entry line_number_table[SIZE];
+    int line_number_table_index = 0;
+
     int data_segment_offset = 0;
     int id_stack_index      = 0;
     int num_bytes           = 0;
     int symbol_table_index  = 127;
 
     symbol_table_entry symbol_table[SIZE];
+
+    int current_line_number = 1;
 
     int column_number = 0;
     int position      = 0;
@@ -88,13 +100,13 @@ whitespace  " "
 %%
 
 ("/*")              { BEGIN(c_comment); }
-<c_comment>\n       { word_length = strlen(yytext); column_number = 0; yyerror("eol"); }
+<c_comment>\n       { word_length = strlen(yytext); column_number = 0; current_line_number++; yyerror("eol"); }
 <c_comment>.        ;
 <c_comment>("*/")   { BEGIN(0); }
 
 "//"                { BEGIN(cpp_comment); }
 <cpp_comment>.      ;
-<cpp_comment>\n     { word_length = strlen(yytext); column_number = 0; yyerror("eol"); BEGIN(0); }
+<cpp_comment>\n     { word_length = strlen(yytext); column_number = 0; current_line_number++; yyerror("eol"); BEGIN(0); }
 
 {main}          { get_word_length_and_column_number(strlen(yytext), yyleng); return MAIN;      }
 
@@ -177,6 +189,7 @@ whitespace  " "
 \n              {
                   word_length   = strlen(yytext);
                   column_number = 0;
+                  current_line_number++;
                   yyerror("eol");
                 }
 
@@ -193,14 +206,17 @@ int find(char* name) {
 
     if (symbol_table[j].name_index == -1) {
        make_entry(name, j);
+       insert_into_line_number_table(current_line_number, name);
        return j;
     }
     else if (cmpstr(id_stack + symbol_table[j].name_index, name)) {
+       insert_into_line_number_table(current_line_number, name);
        return j;
     }
 
     while (symbol_table[j].hash_link != -1) {
        if (cmpstr(id_stack + symbol_table[j].name_index, name)) {
+          insert_into_line_number_table(current_line_number, name);
           return j;
        }
        j = symbol_table[j].hash_link;
@@ -208,6 +224,7 @@ int find(char* name) {
    
     symbol_table[j].hash_link = symbol_table_index;
     make_entry(name, symbol_table_index);
+    insert_into_line_number_table(current_line_number, name);
     ++symbol_table_index;
     return symbol_table_index - 1;
 }
@@ -234,4 +251,39 @@ void make_entry(char* name, int j) {
 void get_word_length_and_column_number(int yytext_length, int yyleng_value) {
     word_length = yytext_length;
     for (position = 0; position < yyleng_value; position++, column_number++);
+}
+
+void insert_into_line_number_table(int line_number, char* identifier) {
+    line_number_table[line_number_table_index].line_number = line_number;
+    strcpy(line_number_table[line_number_table_index].identifier, identifier);
+    line_number_table_index++;
+}
+
+int compare(struct lne* lne1, struct lne* lne2) {
+    return (strcmp(lne1->identifier, lne2->identifier));
+}
+
+void create_cross_reference_list(FILE* output_file, char* source_filename) {
+    int i, j;
+
+    qsort((void *) &line_number_table, SIZE, sizeof(line_number_entry), (compfn) compare);
+
+    fprintf(output_file, "Cross-reference List\n==================================================\n");
+    fprintf(output_file, "The following tables list the identifiers found in\n%s and the lines on which they occur.\n\n", source_filename);
+
+    for (i = 0; i < SIZE; i++) {
+       if (line_number_table[i].line_number >= 1) {
+          fprintf(output_file, "==================================================\n%s\n", line_number_table[i].identifier);
+          fprintf(output_file, "--------------------------------------------------\n");
+          j = 0;
+          while (cmpstr(line_number_table[i].identifier, line_number_table[i+1].identifier)) {
+             fprintf(output_file, "%5d   ", line_number_table[i++].line_number);
+             if (++j == 6) {
+                fprintf(output_file, "\n");
+                j = 0;
+             }
+          }
+          fprintf(output_file, "%5d\n\n", line_number_table[i].line_number);
+       }
+    }
 }

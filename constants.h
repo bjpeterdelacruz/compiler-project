@@ -47,6 +47,7 @@
    #define   FILENAME_LENGTH      256
    #define   STRING_LENGTH        256
    #define   LINE_LENGTH          250
+   #define   IDENTIFIER_LENGTH     25
    #define   NUMBER_OF_SPACES      11
    #define   CODE_SEGDEF_LENGTH    10
    #define   DATA_SEGDEF_LENGTH    10

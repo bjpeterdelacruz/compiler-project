@@ -1,189 +1,48 @@
-Line No.   Source Code
-------------------------------------------
-1          MAIN;
-2          
-3          INT VAR1, VAR2, VAR3, VAR4, VAR5; /* Declare variables */
-4          
-5          OUTPUT "Hello World!";
-6          
-7          INPUT VAR1; INPUT VAR2; /* Ask user to
-8          input values for VAR1 and VAR2 */ VAR1 = VAR2;
-9          
-10         OUTPUT "--- Begin WHILE loop ---";
-11         
-12         WHILE VAR1 == VAR2
-13            OUTPUT "VAR1 is now equal to VAR2!";
-14            INPUT VAR3;
-15            VAR4 = 1;
-16            WHILE VAR3 >= VAR1
-17               OUTPUT "Decrementing VAR3...";
-18               VAR3 = VAR3 - VAR4;
-19               OUTPUT VAR3;
-20               /* OUTPUT VAR2
-21                  OUTPUT VAR1 */
-22            WEND
-23            VAR1 = VAR2 + VAR4;
-24         WEND
-25         
-26         OUTPUT "---  End WHILE loop  ---";
-27         
-28         IF VAR1 != VAR2
-29            OUTPUT "VAR1 does not equal VAR2!";
-30            OUTPUT VAR1;
-31            OUTPUT VAR2;
-32            IF VAR1 >= VAR2
-33               OUTPUT "VAR1 is greater than VAR2!";
-34            ENDIF
-35         ENDIF
-36         
-37         // OUTPUT VAR1 + VAR2 + VAR3;
-38         
-39         OUTPUT "--- Begin arithmetic calculations ---";
-40         
-41         OUTPUT "Let VAR5 = 25.";
-42         VAR5 = 25;
-43         
-44         OUTPUT "VAR5 / -5";
-45         OUTPUT VAR5  / -5;
-46         
-47         OUTPUT "-VAR5 / -5";
-48         OUTPUT -VAR5 / -5;
-49         
-50         OUTPUT "VAR5 * -5";
-51         OUTPUT VAR5  * -5;
-52         
-53         OUTPUT "-VAR5 * -5";
-54         OUTPUT -VAR5 * -5;
-55         
-56         OUTPUT "VAR5 / -5 --> VAR5";
-57         VAR5 = VAR5  / -5;
-58         OUTPUT VAR5;
-59         
-60         OUTPUT "-VAR5 * -5 --> VAR5";
-61         VAR5 = 25;
-62         VAR5 = -VAR5 * -5;
-63         OUTPUT VAR5;
-64         
-65         OUTPUT "*************************************";
-66         
-67         OUTPUT "Let VAR3 = 20 and VAR4 = 40.";
-68         VAR3 = 20;
-69         VAR4 = 40;
-70         
-71         OUTPUT "VAR3 + -VAR4";
-72         OUTPUT VAR3  + -VAR4;
-73         
-74         OUTPUT "VAR3 - -VAR4";
-75         OUTPUT VAR3  - -VAR4;
-76         
-77         OUTPUT "-VAR3 + -VAR4";
-78         OUTPUT -VAR3 + -VAR4;
-79         
-80         OUTPUT "-VAR3 - -VAR4";
-81         OUTPUT -VAR3 - -VAR4;
-82         
-83         OUTPUT "VAR3 - -VAR4 --> VAR3";
-84         VAR3 = VAR3  - -VAR4;
-85         OUTPUT VAR3;
-86         
-87         OUTPUT "-VAR3 + -VAR4 --> VAR3";
-88         VAR3 = 20;
-89         VAR3 = -VAR3 + -VAR4;
-90         OUTPUT VAR3;
-91         
-92         OUTPUT "*************************************";
-93         
-94         OUTPUT "Let VAR1 = 5, VAR2 = 10, VAR3 = 15, and VAR4 = 20.";
-95         VAR1 = 5;
-96         VAR2 = 10;
-97         VAR3 = 15;
-98         VAR4 = 20;
-99         
-100        OUTPUT "VAR1 + VAR2 - VAR3 - VAR4 --> VAR5";
-101        VAR5 = VAR1 + VAR2 - VAR3 - VAR4;
-102        OUTPUT VAR5;
-103        
-104        OUTPUT "VAR2 * 5 * 5 + VAR3 + VAR3 - -VAR4 --> VAR5";
-105        VAR5 = VAR2 * 5 * 5 + VAR3 + VAR3 - -VAR4;
-106        OUTPUT VAR5;
-107        
-108        OUTPUT "VAR4 / 5 * -VAR1 * -5 / -VAR4 --> VAR5";
-109        VAR4 = 20;
-110        VAR5 = VAR4 / 5 * -VAR1 * -5 / -VAR4;
-111        OUTPUT VAR5;
-112        
-113        OUTPUT "Negating VAR5...";
-114        OUTPUT (-VAR5);
-115        
-116        OUTPUT "-VAR5 + 5 --> VAR5";
-117        VAR5 = 20;
-118        VAR5 = -VAR5 + 5;
-119        OUTPUT VAR5;
-120        
-121        OUTPUT "-VAR5 - 5 * -1 - 5 + 10 --> VAR5";
-122        VAR5 = 20;
-123        VAR5 = -VAR5 - 5 * -1 - 5 + 10;
-124        OUTPUT VAR5;
-125        
-126        OUTPUT "*************************************";
-127        
-128        OUTPUT "Let VAR1 = 1.";
-129        VAR1 = 1;
-130        
-131        OUTPUT "VAR1 + 2 - 3 + 4 - 5 * -6 / 3 * 10 / -2";
-132        OUTPUT VAR1 + 2 - 3 + 4 - 5 * -6 / 3 * 10 / -2;
-133        
-134        OUTPUT "VAR1 - 2 + 3 - 4 + 5 * 3 / -3 * -4 / 2 --> VAR2";
-135        VAR2 = VAR1 - 2 + 3 - 4 + 5 * 3 / -3 * -4 / 2;
-136        OUTPUT VAR2;
-137        
-138        OUTPUT "---  End arithmetic calculations  ---";
-139        
-140        // Set up values for DO loop
-141        
-142        VAR2 = 2;
-143        VAR3 = 10;
-144        VAR5 = 6;
-145        
-146        OUTPUT "--- Begin DO loop ---";
-147        
-148        OUTPUT "Let VAR1 = 2 and VAR4 = 2.";
-149        
-150        DO VAR1 = VAR2 STEP VAR2 TO VAR3
-151          OUTPUT VAR1;
-152          DO VAR4 = VAR2 STEP VAR2 TO VAR5
-153             OUTPUT VAR4;
-154             OUTPUT "Incrementing VAR4...";
-155          END DO
-156          OUTPUT "Incrementing VAR1...";
-157        END DO
-158        
-159        OUTPUT "---  End DO loop  ---";
-160        
-161        VAR1 = 1;
-162        VAR2 = 3;
-163        VAR3 = 1;
-164        WHILE VAR1 < VAR2
-165          OUTPUT "VAR1 is less than VAR2!";
-166          OUTPUT "Incrementing VAR1...";
-167          VAR1 = VAR1 + VAR3;
-168        WEND
-169        
-170        IF VAR1 > VAR3
-171          OUTPUT "VAR1 is now greater than VAR3!";
-172          IF VAR1 == VAR2
-173            OUTPUT "VAR1 is equal to VAR2!";
-174            IF VAR1 < VAR3
-175              OUTPUT "?";
-176              VAR1 = VAR3;
-177              OUTPUT "VAR1 is now equal to VAR3!";
-178            ENDIF  // 3
-179          ENDIF    /* 2 */
-180        ENDIF      // 1 //
-181        
-182        OUTPUT "Goodbye!";
-183        
-184        END MAIN;
+Cross-reference List
+==================================================
+The following tables list the identifiers found in
+source and the lines on which they occur.
 
-0 syntax errors encountered.
+==================================================
+VAR1
+--------------------------------------------------
+  170      32     135       3       7     167   
+    8     167      12     176     110     132   
+  129      16     150     174      95     151   
+   23     172     161      28     101      30   
+  164
+
+==================================================
+VAR2
+--------------------------------------------------
+  162       7       8      12     135     150   
+  150      23     152      28      31      32   
+  152     172     142     136     164     105   
+  101       3      96
+
+==================================================
+VAR3
+--------------------------------------------------
+   81     170      18      84      84     174   
+   85      88      89      89      18      90   
+   78     143      97     176      75      16   
+   72     101       3      19     163      68   
+  105     105     150     167      14
+
+==================================================
+VAR4
+--------------------------------------------------
+  153      81      84      89      75      98   
+   72     101      69     105     109     110   
+  110      78      23     152      18      15   
+    3
+
+==================================================
+VAR5
+--------------------------------------------------
+  101     124     144     123     123     122   
+  119     118     118     117     114     152   
+  111     110     106     105     102      63   
+   62      62      61      58      57      57   
+   54      51      48      45      42       3
 

@@ -42,6 +42,13 @@
 
     extern symbol_table_entry symbol_table[];
 
+    typedef struct lne {
+        char identifier[IDENTIFIER_LENGTH];
+        int line_number;
+    } line_number_entry;
+
+    extern line_number_entry line_number_table[];
+
     int  yylex();
     int  yyparse();
     void yyerror(char* mes);
@@ -414,13 +421,15 @@ int main(int argc, char* argv[]) {
     char  current_line[LINE_LENGTH];
     char  object_module_filename[FILENAME_LENGTH];
     char  error_report_filename[FILENAME_LENGTH];
+    char  cross_reference_list_filename[FILENAME_LENGTH];
 
-    char* file_extension      = NULL;
-    int   current_line_number = 0;
-    int   length              = 0;
-    int   position            = 0;
-    FILE* source_code_file    = NULL;
-    FILE* object_module       = NULL;
+    char* file_extension       = NULL;
+    int   current_line_number  = 0;
+    int   length               = 0;
+    int   position             = 0;
+    FILE* source_code_file     = NULL;
+    FILE* object_module        = NULL;
+    FILE* cross_reference_list = NULL;
 
     /*********************************************************************************
     ** Create output file for object module.                                        **
@@ -463,10 +472,10 @@ int main(int argc, char* argv[]) {
     strcpy(error_report_filename, argv[1]);
     if ((file_extension = strstr(error_report_filename, ".")) != NULL) {
        *(file_extension + 1) = '\0';
-       strcat(error_report_filename, "lst");
+       strcat(error_report_filename, "rpt");
     }
     else {
-       strcat(error_report_filename, ".lst");
+       strcat(error_report_filename, ".rpt");
     }
     error_report = fopen(error_report_filename, "w");
     if (error_report == NULL) {
@@ -494,8 +503,9 @@ int main(int argc, char* argv[]) {
     /*********************************************************************************
     ** Prepare error report.                                                        **
     *********************************************************************************/
+    fprintf(error_report, "Error Report\n==================================================\n");
     fprintf(error_report, "Line No.   Source Code\n");
-    fprintf(error_report, "------------------------------------------\n");
+    fprintf(error_report, "--------------------------------------------------\n");
 
     reset_symbol_table();
 
@@ -533,7 +543,7 @@ int main(int argc, char* argv[]) {
     else {
        fprintf(error_report, "\n0 syntax errors encountered.\n\n");
        if (!div_by_zero_encountered) {
-          printf("0 syntax errors encountered. Object module created [%s].\n", object_module_filename);
+          printf("0 syntax errors encountered.\n\nObject module created [%s].\n", object_module_filename);
        }
     }
 
@@ -558,6 +568,25 @@ int main(int argc, char* argv[]) {
     fclose(source_code_file);
     fclose(yyin);
     fclose(object_module);
+
+    strcpy(cross_reference_list_filename, argv[1]);
+    if ((file_extension = strstr(cross_reference_list_filename, ".")) != NULL) {
+       *(file_extension + 1) = '\0';
+       strcat(cross_reference_list_filename, "lst");
+    }
+    else {
+       strcat(cross_reference_list_filename, ".lst");
+    }
+    cross_reference_list = fopen(cross_reference_list_filename, "wb");
+    if (cross_reference_list == NULL) {
+       printf("Unable to open %s for writing.\n", cross_reference_list_filename);
+       exit(EXIT_FAILURE);
+    }
+
+    create_cross_reference_list(cross_reference_list, argv[1]);
+    fclose(cross_reference_list);
+
+    printf("Error report created [%s].\nCross-reference list created [%s].\n\n", error_report_filename, cross_reference_list_filename);
 
     #ifdef INFO
        printf("**************************************************\n");
@@ -1136,6 +1165,7 @@ void reset_symbol_table() {
         symbol_table[pos].hash_link  = -1;
         symbol_table[pos].offset     = -1;
         symbol_table[pos].name_index = -1;
+        line_number_table[pos].line_number = -1;
     }
 }
 
