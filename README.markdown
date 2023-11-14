@@ -7,4 +7,4 @@
 4. Finally, type "file" to run the compiled program.
 
 ## Links
-Developer's website: [BJ Dela Cruz](https://www.bjdelacruz.com)
+Developer's website: [BJ Dela Cruz](https://bjdelacruz.dev)
